@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v3.8.5">
-  <title>Jenok</title>
+  <title>Jenok Blog</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -50,7 +50,7 @@
             <a class="nav-link" href="{% static 'Resume.pdf' %}">Resume</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
+            <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -61,40 +61,30 @@
   </header>
 
   <main role="main">
+    <div class="container">
+      <h1 class="text-center pt-3">Welcome to Jenok Blog</h1>
+      <br>
+      <br>
+      <h2>Latest Posts</h2>
+      <hr>
 
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Hi, I'm Jenok.</h1>
-        <p class="lead text-muted">I started to learn coding in order to make a online bookstore which doesn't sell books. This website is my portfolio of what I have done so far and a trial of learning coding.</p>
-        <p>
-          <a href="mailto:jenokim1105@gmail.com" class="btn btn-primary my-2">Email me</a>
-        </p>
-        <img src="{% static '52926902_2269137073137515_8529029035164958720_n.jpg' %}" height="250px" weight="250px" alt="">
-      </div>
-    </section>
 
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row">
-          {% for job in jobs.all %}
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img class="card-img-top" src="{{job.image.url}}">
-              <div class="card-body">
-                <p class="card-text">{{ job.summary }}</p>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
+
+  {% for blog in blog.all %}
+    <a href="{% url 'detail' blog.id %}"> <h3>{{ blog.title}}</h3> </a>
+    {{ blog.pub_date_pretty}}
+    <br>
+    <img class="img-fluid" src="{{blog.image.url}}" height="250" width="250" alt="">
+    <br>
+    <p>{{ blog.summary }}</p>
+  {% endfor %}
+
     </div>
-
   </main>
 
   <footer class="text-muted">
     <div class="container text-center">
-      <p>CopyRight Jenok {% now "Y" %}</p>
+      <p class="pt-3">CopyRight Jenok {% now "Y" %}</p>
     </div>
   </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
